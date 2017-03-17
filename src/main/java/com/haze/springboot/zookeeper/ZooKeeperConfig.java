@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
+ * zk配置属性
  * Created by Sofar on 2016/11/18.
  */
 @Component

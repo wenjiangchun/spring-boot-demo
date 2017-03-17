@@ -14,7 +14,6 @@ import java.util.Map;
 
 /**
  * Freemarker生成静态页面工具类
- * Created by Sofar on 2014/7/10.
  */
 public class FreemarkerUtils {
 

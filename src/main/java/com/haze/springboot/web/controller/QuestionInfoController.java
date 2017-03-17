@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,4 +36,12 @@ public class QuestionInfoController {
         return "redirect:/question/index";
     }
 
+    @RequestMapping("/getNames")
+    public String getNames(Model model) {
+        List<String> nameList = new ArrayList<>();
+        nameList.add("河北");
+        nameList.add("河南");
+        model.addAttribute("nameList", nameList);
+       return "question/getNames";
+    }
 }
