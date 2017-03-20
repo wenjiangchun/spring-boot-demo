@@ -2,8 +2,11 @@ package com.haze.springboot;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 @SpringBootApplication
 public class Application {
@@ -22,7 +25,12 @@ public class Application {
         springApplication.setBanner((environment, sourceClass, out) -> {
             out.println("Welcome use Spring Boot!");
         });
-        springApplication.run(args);
+        ApplicationContext ctx = springApplication.run(args);
+        for (String beanName : ctx.getBeanDefinitionNames()) {
+            logger.debug(beanName);
+        }
+        ctx.getBean(StringRedisTemplate.class).opsForValue().set("aaa", "111");
+
         /*if (!Files.exists(Paths.get(FILE_PATH))) {
             try {
                 Files.createDirectories(Paths.get(FILE_PATH));

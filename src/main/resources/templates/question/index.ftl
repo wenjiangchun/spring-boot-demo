@@ -21,6 +21,8 @@
                             <th>id信息</th>
                             <th>用例信息</th>
                             <th>节点路径</th>
+                            <th>阅读量</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -30,6 +32,8 @@
                                 <td>${question.id}</td>
                                 <td>${question.data}</td>
                                 <td>${question.hasSyn?string('yes', 'no')}</td>
+                                <td>${question.readCount!}</td>
+                                <td><a href="${ctx}/question/read/${question.id}">阅读</a> </td>
                             </tr>
                         </#list>
                         </tbody>
@@ -40,8 +44,11 @@
     </div>
 
 
-
     <form role="form" action="${ctx}/question/save" class="form-horizontal" method="post">
+        <div class="form-group">
+            <label for="exampleInputPassword1">标题</label>
+            <textarea name="title" required class="form-control"></textarea>
+        </div>
         <div class="form-group">
             <label for="exampleInputPassword1">用例信息</label>
             <textarea name="data" required class="form-control"></textarea>

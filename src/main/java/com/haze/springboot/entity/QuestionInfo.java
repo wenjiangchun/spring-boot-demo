@@ -5,10 +5,8 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
-/**
- * Created by Sofar on 2016/11/14.
- */
 @Entity
 public class QuestionInfo {
 
@@ -16,7 +14,7 @@ public class QuestionInfo {
 
     @Id
     @GeneratedValue(generator = "uuidGenerator")
-    @GenericGenerator(name = "uuidGenerator", strategy = "uuid.hex")
+    @GenericGenerator(name = "uuidGenerator", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
     private String data;
@@ -62,5 +60,37 @@ public class QuestionInfo {
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    private Long readCount;
+
+    @Transient
+    public Long getReadCount() {
+        return readCount;
+    }
+
+    public void setReadCount(Long readCount) {
+        this.readCount = readCount;
+    }
+
+    @Override
+    public String toString() {
+        return "QuestionInfo{" +
+                "id='" + id + '\'' +
+                ", data='" + data + '\'' +
+                ", hasSyn=" + hasSyn +
+                ", title='" + title + '\'' +
+                ", readCount=" + readCount +
+                '}';
     }
 }
